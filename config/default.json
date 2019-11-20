@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://tatu123:tatu123@merntutorial-u5gep.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mySecretJWToken",
+  "githubClientId": "ed42c1b0912c42540cb7",
+  "githubClientSecret": "4f04572e7361d458b21c15944bbaaec66060aeed"
+}
