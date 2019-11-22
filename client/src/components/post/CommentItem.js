@@ -12,32 +12,34 @@ const CommentItem = ({
   deleteComment
 }) => {
   return (
-    <div className='post bg-white p-1 my-1'>
-      <div>
-        <Link to={`/profile/${user._id}`}>
-          <img className='round-img' src={avatar} alt='' />
-          <h4>{name}</h4>
-        </Link>
+    <Fragment>
+      <div className='post bg-white p-1 my-1'>
+        <div>
+          <Link to={`/profile/${user._id}`}>
+            <img className='round-img' src={avatar} alt='' />
+            <h4>{name}</h4>
+          </Link>
+        </div>
+        <div>
+          <p className='my-1'>{text}</p>
+          <p className='post-date'>
+            <Moment format='DD/MM/YYYY'>{date}</Moment>
+          </p>
+          <p>
+            {' '}
+            {!auth.loading && auth.user._id === user && (
+              <button
+                onClick={e => deleteComment(postId, _id)}
+                type='button'
+                className='btn btn-danger'
+              >
+                <i className='fas fa-times'></i>
+              </button>
+            )}
+          </p>
+        </div>
       </div>
-      <div>
-        <p className='my-1'>{text}</p>
-        <p className='post-date'>
-          <Moment format='DD/MM/YYYY'>{date}</Moment>
-        </p>
-        <p>
-          {' '}
-          {!auth.loading && auth.user._id === user && (
-            <button
-              onClick={e => deleteComment(postId, _id)}
-              type='button'
-              className='btn btn-danger'
-            >
-              <i className='fas fa-times'></i>
-            </button>
-          )}
-        </p>
-      </div>
-    </div>
+    </Fragment>
   );
 };
 
@@ -52,7 +54,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { deleteComment }
-)(CommentItem);
+export default connect(mapStateToProps, { deleteComment })(CommentItem);
